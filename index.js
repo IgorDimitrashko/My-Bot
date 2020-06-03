@@ -44,10 +44,11 @@ console.log('Bot has been started...')
             const {id} = msg.chat
             //  bot.sendMessage(id, debug(msg))
         })
-     /*  bot.on('message', msg => {
-              bot.sendMessage(msg.chat.id, 'message!')
 
-    }) */
+    //  bot.on('message', msg => {
+     //         bot.sendMessage(msg.chat.id, 'message!')
+     //
+     // })
 
                             // клавиатура
   bot.on('message', msg => {
@@ -56,42 +57,39 @@ console.log('Bot has been started...')
 
     if (msg.text === 'ЗАКРЫТЬ') {
 
-       bot.sendMessage(chatId, 'Рад был помочь, хорошего дня',{
+       bot.sendMessage(chatId, 'Рад был помочь, хорошего дня!!!',{
            reply_markup: {
                remove_keyboard: true
            }
            })
-    }  else if (msg.text === 'ВИДЕО')
+    }
+    else if (msg.text === 'ВИДЕО')
     {
+        bot.sendMessage(chatId, 'Видео пока нет, но скоро добавим!!!',)
+      // bot.sendMessage(msg.chat.id, 'https://www.youtube.com/watch?v=jWDJWfPIw2k' ,{
+            //disable_web_page_preview: true,   // выключение превью web страницы
+            //disable_notification: true,      // выключение нотификации
+     // })
 
-       bot.sendMessage(msg.chat.id, 'https://www.youtube.com/watch?v=jWDJWfPIw2k' ,{
-            // disable_web_page_preview: true,   // выключение превью web страницы
-           // disable_notification: true,      // выключение нотификации
-        })
-      /*  bot.onText(/\/video1/, msg => {
-            const chatId = msg.chat.id
 
-            bot.sendMessage(chatId, 'sending video...')
-
-            bot.sendVideo(chatId, 'http://techslides.com/demos/sample-videos/small.mp4')// ссылка на видео
-        }) */
-
-  /*  {bot.sendMessage(chatId, 'Введите /video', {
+           /* если video in library*/
+  /*  bot.sendMessage(chatId, 'Введите /video', {
             reply_markup: {
                 // force_reply: true
             }
         })  */
-     /*     //video in library
+     /*
      bot.onText(/\/video/, msg => {
          const chatId = msg.chat.id
          bot.sendMessage(chatId, 'sending video...')
          bot.sendVideo(chatId, './video.mp4')
      }) */
+                /* end video in library*/
 
+    }
+    else if (msg.text === 'РАСПОЛОЖЕНИЕ'){
 
-    }  else if (msg.text === 'РАСПОЛОЖЕНИЕ'){
-
-        bot.sendMessage(chatId, 'Введите /loc', {
+        bot.sendMessage(chatId, 'жми /loc', {
             reply_markup: {
                 remove_keyboard: true
                 // force_reply: true
@@ -122,29 +120,29 @@ console.log('Bot has been started...')
         /*  bot.on('message', (msg) => {
      const chatId = msg.chat.id */
 
-     /*   bot.sendMessage(chatId,'выбирайте',{
+      /*  bot.sendMessage(chatId,'выбирайте',{
             reply_markup: {
                 inline_keyboard: [
                     [
                         {
-                            text: 'КАРТОЙ',
+                            text: 'картой',
                             callback_data: 'картой',}
                     ],
 
                     [
                         {
-                            text: 'наличными мастеру',
-                            callback_data: 'наличными мастеру'}
+                            text: 'наличными',
+                            callback_data: 'наличными'}
                     ]
                 ]
             }
-        })
+        })*/
         bot.on('callback_query', query => {
             bot.sendMessage(query.message.chat.id, debug(query))
 
             // bot.answerCallbackQuery(query.id, `${query.data}`)
-        }) */
-        bot.sendMessage(chatId, 'Введите /pay',{
+        })
+        bot.sendMessage(chatId, 'жми /pay',{
             reply_markup: {
                 remove_keyboard: true
                // force_reply: true
@@ -153,7 +151,7 @@ console.log('Bot has been started...')
 
     } else if (msg.text === 'СТОИМОСТЬ') {
 
-        bot.sendMessage(chatId, '200 UAH в час', {
+        bot.sendMessage(chatId, '300 UAH в час', {
             reply_markup: {
                 inline_keyboard: [
 
@@ -164,13 +162,13 @@ console.log('Bot has been started...')
 
     }  else if (msg.text === 'САЙТ') {
 
-        bot.sendMessage(msg.chat.id, 'http://creator.od.ua',{
-            disable_web_page_preview: true,   // выключение превью web страницы
+        bot.sendMessage(msg.chat.id, 'https://creator.od.ua',{
+            // disable_web_page_preview: true,   // выключение превью web страницы
            // disable_notification: true,      // выключение нотификации
         })
 
     }  else {
-        bot.sendMessage(chatId,'?', {
+        bot.sendMessage(chatId,'Выберите ниже раздел, который интересует:',{
             reply_markup: {
                 keyboard: [
 
@@ -197,14 +195,14 @@ console.log('Bot has been started...')
         chatId,
         'разработка',
         'один час',
-    'payload',
-    '372774012:LIVE:fc870691535548064c3c0b5fe0445847',
+        'payload',
+        '372774012:LIVE:fc870691535548064c3c0b5fe0445847',
         'some_random_string_key',
         'UAH',
         [
             {
                 label:'разработка',
-                 amount:'20000'  // стоимость в копейках
+                 amount:'30000'  // стоимость в копейках
             }
         ],
         {
@@ -221,14 +219,13 @@ console.log('Bot has been started...')
 
 bot.onText(/\/loc/, msg => {
     // акварель 46.436527, 30.749767
-    bot.sendLocation(msg.chat.id, 46.436527, 30.749767)
+    bot.sendLocation(msg.chat.id, 46.432514, 30.745046)
 })
 
 
 bot.onText(/\/start/, msg => {
     const text = `Здравствуйте! , ${msg.from.first_name}
-    \nЯ могу вам помочь, чтобы не отвлекать хояина.
-    \nВыберите команду для начала работы:`
+    \nГотов Вам помочь.`
 
     bot.sendMessage(msg.chat.id, text)
    // bot.on('message', (msg) => {
